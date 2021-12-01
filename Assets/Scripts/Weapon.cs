@@ -1,19 +1,13 @@
+using Data;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class Weapon : MonoBehaviour
 {
-    public float ProjectileSpeed;
-    public int ProjectileCount;
+    public WeaponData WeaponData;
 
-    public float ProjectileMinAngle;
-    public float ProjectileMaxAngle;
-
-    [SerializeField] Vector3 muzzlePoint;
     [SerializeField] Transform muzzle;
-    [SerializeField] GameObject projectilePrefab;
-
     [SerializeField] UnityEvent<int> OnFired;
 
     public void OnFire(InputAction.CallbackContext context)
@@ -24,22 +18,23 @@ public class Weapon : MonoBehaviour
 
     private void Shoot()
     {
-        Vector3 spawnPoint = muzzle.position;
-
-        for (int i = 0; i < ProjectileCount; i++)
+        for (int i = 0; i < WeaponData.ProjectileCount; i++)
         {
-            var projectileRotation = Quaternion.Euler(z: 0,
-                    x: Random.Range(ProjectileMinAngle, ProjectileMaxAngle),
-                    y: Random.Range(ProjectileMinAngle, ProjectileMaxAngle));
+            float randomX = Random.Range(-WeaponData.ProjectileMaxAngle, WeaponData.ProjectileMaxAngle);
+            float randomY = Random.Range(-WeaponData.ProjectileMaxAngle, WeaponData.ProjectileMaxAngle);
+            Quaternion rotation = transform.rotation * Quaternion.Euler(randomX, randomY, 0f);
 
-            Rigidbody projectile = Instantiate(projectilePrefab, spawnPoint, projectileRotation).GetComponent<Rigidbody>();
-            projectile.velocity = projectile.transform.forward * ProjectileSpeed;
+            GameObject projectile = Instantiate(WeaponData.ProjectilePrefab, muzzle.position, rotation);
+            projectile.GetComponent<TrailRenderer>().enabled = WeaponData.ProjectileTrail;
+            projectile.GetComponent<Rigidbody>().velocity = projectile.transform.forward * WeaponData.ProjectileSpeed;
+
+            Destroy(projectile.gameObject, 5f);
         }
 
         // play sound
-        // particle
+        // muzzle flash
 
-        OnFired?.Invoke(ProjectileCount);
+        OnFired?.Invoke(WeaponData.ProjectileCount);
     }
 
     private void OnDrawGizmosSelected() => Gizmos.DrawSphere(muzzle.position, .02f);
