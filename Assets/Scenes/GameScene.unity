@@ -734,7 +734,7 @@ PrefabInstance:
         type: 3}
       propertyPath: WeaponData
       value: 
-      objectReference: {fileID: 11400000, guid: 3f1bfa5680f5dcf4fa2c4cacccdc96cb,
+      objectReference: {fileID: 11400000, guid: db14c7f594f192044b2440744c4c13c2,
         type: 2}
     - target: {fileID: 7472037894961814316, guid: 8819644eaa92bb94faf058b2959e374a,
         type: 3}
@@ -13721,7 +13721,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2136266200}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}

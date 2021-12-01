@@ -16,6 +16,9 @@ public class Weapon : MonoBehaviour
     [SerializeField] GameObject smallBulletPrefab;
     [SerializeField] GameObject largeBulletPrefab;
 
+    private Material selectedMaterial;
+    private GameObject selectedBulletPrefab;
+
     public void OnFire(InputAction.CallbackContext context)
     {
         if (context.performed && context.ReadValueAsButton())
@@ -32,29 +35,22 @@ public class Weapon : MonoBehaviour
             float randomY = Random.Range(-WeaponData.ProjectileMaxAngle, WeaponData.ProjectileMaxAngle);
             Quaternion rotation = transform.rotation * Quaternion.Euler(randomX, randomY, 0f);
 
-            GameObject projectile = Instantiate(WeaponData.ProjectilePrefab, muzzle.position, rotation);
+            // Use ObjectPool<> instead for better performance
+            GameObject projectile = Instantiate(selectedBulletPrefab ?? WeaponData.ProjectilePrefab, muzzle.position, rotation);
+            if (selectedMaterial) projectile.GetComponent<Renderer>().material = selectedMaterial;
+
             projectile.GetComponent<TrailRenderer>().enabled = WeaponData.ProjectileTrail;
             projectile.GetComponent<Rigidbody>().velocity = projectile.transform.forward * WeaponData.ProjectileSpeed;
 
             Destroy(projectile.gameObject, 5f);
         }
 
-        // play sound
-        // muzzle flash
-
+        // play sound & muzzle flash
         OnFired?.Invoke(WeaponData.ProjectileCount);
     }
 
-    public void SetBulletColor(bool alternative)
-    {
-        WeaponData.ProjectilePrefab.GetComponent<Renderer>().material =
-                alternative ? redBulletMaterial : regularBulletMaterial;
-    }
-
-    public void SetBulletSize(bool large)
-    {
-        WeaponData.ProjectilePrefab = large ? largeBulletPrefab : smallBulletPrefab;
-    }
+    public void SetBulletColor(bool alternative) => selectedMaterial = alternative ? redBulletMaterial : regularBulletMaterial;
+    public void SetBulletSize(bool large) => selectedBulletPrefab = large ? largeBulletPrefab : smallBulletPrefab;
 
     private void OnDrawGizmosSelected() => Gizmos.DrawSphere(muzzle.position, .02f);
 }
