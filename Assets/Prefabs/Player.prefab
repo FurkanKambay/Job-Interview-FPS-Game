@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8554881088262033489}
-  - component: {fileID: 8554881088262033494}
+  - component: {fileID: 818362665282011551}
   - component: {fileID: 3398636408852799407}
   m_Layer: 0
   m_Name: Player
@@ -117,8 +117,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &8554881088262033494
-CapsuleCollider:
+--- !u!143 &818362665282011551
+CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -127,9 +127,13 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  serializedVersion: 2
   m_Height: 2
-  m_Direction: 1
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &3398636408852799407
 MonoBehaviour:
@@ -143,4 +147,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916be326f889b774a8094facfbe280cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementSpeed: 1
+  Speed: 1
