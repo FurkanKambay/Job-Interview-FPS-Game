@@ -9,5 +9,5 @@ public class WeaponStatsDisplay : MonoBehaviour
 
     private void Update() => bulletCountText.text = bulletCount.ToString();
 
-    public void IncreaseBulletCount() => bulletCount++;
+    public void IncreaseBulletCount(int amount) => bulletCount += amount;
 }

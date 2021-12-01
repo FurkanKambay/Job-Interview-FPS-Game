@@ -11,30 +11,36 @@ public class Weapon : MonoBehaviour
     public float ProjectileMaxAngle;
 
     [SerializeField] Vector3 muzzlePoint;
+    [SerializeField] Transform muzzle;
     [SerializeField] GameObject projectilePrefab;
 
-    [SerializeField] UnityEvent OnFired;
+    [SerializeField] UnityEvent<int> OnFired;
 
     public void OnFire(InputAction.CallbackContext context)
     {
         if (context.performed && context.ReadValueAsButton())
-            Fire();
+            Shoot();
     }
 
-    private void Fire()
+    private void Shoot()
     {
-        Vector3 spawnPoint = transform.position + muzzlePoint;
-        Rigidbody projectile = Instantiate(projectilePrefab, spawnPoint, transform.rotation).GetComponent<Rigidbody>();
-        projectile.velocity = projectile.transform.forward * ProjectileSpeed;
+        Vector3 spawnPoint = muzzle.position;
+
+        for (int i = 0; i < ProjectileCount; i++)
+        {
+            var projectileRotation = Quaternion.Euler(z: 0,
+                    x: Random.Range(ProjectileMinAngle, ProjectileMaxAngle),
+                    y: Random.Range(ProjectileMinAngle, ProjectileMaxAngle));
+
+            Rigidbody projectile = Instantiate(projectilePrefab, spawnPoint, projectileRotation).GetComponent<Rigidbody>();
+            projectile.velocity = projectile.transform.forward * ProjectileSpeed;
+        }
+
         // play sound
         // particle
-        OnFired?.Invoke();
+
+        OnFired?.Invoke(ProjectileCount);
     }
 
-    private void GetRandomRotation()
-    {
-
-    }
-
-    private void OnDrawGizmosSelected() => Gizmos.DrawSphere(transform.position + muzzlePoint, .02f);
+    private void OnDrawGizmosSelected() => Gizmos.DrawSphere(muzzle.position, .02f);
 }

@@ -458,13 +458,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7472037894961814316, guid: 8819644eaa92bb94faf058b2959e374a,
         type: 3}
+      propertyPath: ProjectileCount
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7472037894961814316, guid: 8819644eaa92bb94faf058b2959e374a,
+        type: 3}
+      propertyPath: ProjectileSpeed
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 7472037894961814316, guid: 8819644eaa92bb94faf058b2959e374a,
+        type: 3}
+      propertyPath: ProjectileMaxAngle
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7472037894961814316, guid: 8819644eaa92bb94faf058b2959e374a,
+        type: 3}
+      propertyPath: ProjectileMinAngle
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7472037894961814316, guid: 8819644eaa92bb94faf058b2959e374a,
+        type: 3}
       propertyPath: OnFired.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7472037894961814316, guid: 8819644eaa92bb94faf058b2959e374a,
         type: 3}
       propertyPath: OnFired.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7472037894961814316, guid: 8819644eaa92bb94faf058b2959e374a,
         type: 3}
