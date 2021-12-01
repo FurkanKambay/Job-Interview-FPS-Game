@@ -13,6 +13,8 @@ public class PlayerLook : MonoBehaviour
 
     public void OnLook(InputAction.CallbackContext context)
     {
+        if (!enabled) return;
+
         Vector2 input = context.ReadValue<Vector2>();
 
         Transform player = transform;

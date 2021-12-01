@@ -17,11 +17,5 @@ public class PlayerMovement : MonoBehaviour
         character.SimpleMove(lateralVelocity * (Speed * Time.deltaTime));
     }
 
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        // if (context.performed)
-            movement = context.ReadValue<Vector2>();
-        // else if (context.canceled)
-        //     movement = Vector2.zero;
-    }
+    public void OnMove(InputAction.CallbackContext context) => movement = context.ReadValue<Vector2>();
 }
