@@ -6,25 +6,22 @@ public class PlayerMovement : MonoBehaviour
 {
     public float Speed;
 
-    [SerializeField] private InputActionAsset actionsAsset;
-    [SerializeField] private InputActionReference MovementAction;
-
     private CharacterController character;
-    private Vector3 movement;
+    private Vector2 movement;
 
-    private void Awake()
-    {
-        character = GetComponent<CharacterController>();
-    }
+    private void Awake() => character = GetComponent<CharacterController>();
 
     private void Update()
     {
-        character.SimpleMove(movement * (Speed * Time.deltaTime));
+        Vector3 lateralVelocity = transform.TransformVector(movement.x, 0f, movement.y);
+        character.SimpleMove(lateralVelocity * (Speed * Time.deltaTime));
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        Vector2 input = context.ReadValue<Vector2>();
-        movement = new Vector3(input.x, 0f, input.y);
+        // if (context.performed)
+            movement = context.ReadValue<Vector2>();
+        // else if (context.canceled)
+        //     movement = Vector2.zero;
     }
 }

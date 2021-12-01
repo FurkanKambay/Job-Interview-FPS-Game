@@ -96,9 +96,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7732d498c91cd3f448edf0a994c0632e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnFired:
-    m_PersistentCalls:
-      m_Calls: []
+  ProjectileSpeed: 100
+  ProjectileCount: 1
+  ProjectileMinAngle: 1
+  ProjectileMaxAngle: 5
   muzzlePoint: {x: 0, y: 0, z: 0.5}
   projectilePrefab: {fileID: 3044550050805803131, guid: f1553c0bebbfe0644b86550054214e4c,
     type: 3}
+  OnFired:
+    m_PersistentCalls:
+      m_Calls: []
