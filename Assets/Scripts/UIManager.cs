@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.InputSystem;
 
 public class UIManager : MonoBehaviour
 {
@@ -8,15 +7,13 @@ public class UIManager : MonoBehaviour
     public UnityEvent OnShowMenu;
     public UnityEvent OnHideMenu;
 
-    private void Update()
+    public void Toggle()
     {
-        if (Keyboard.current.mKey.wasPressedThisFrame)
-        {
-            IsMenuShown = !IsMenuShown;
-            if (IsMenuShown)
-                OnShowMenu.Invoke();
-            else
-                OnHideMenu.Invoke();
-        }
+        IsMenuShown = !IsMenuShown;
+
+        if (IsMenuShown)
+            OnShowMenu.Invoke();
+        else
+            OnHideMenu.Invoke();
     }
 }
