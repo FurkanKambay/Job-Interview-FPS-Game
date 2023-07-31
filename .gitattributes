@@ -1,133 +1,95 @@
-# Auto detect text files and perform LF normalization
-*          text=auto
+[attr]lfs                   -text filter=lfs diff=lfs merge=lfs
+[attr]unity-yaml            text merge=unityyamlmerge linguist-language=yaml
 
-*.cs       text diff=csharp
-*.cshtml   text diff=html
-*.csx      text diff=csharp
-*.sln      text eol=crlf merge=union
-*.csproj   text merge=union
+*                           text=auto eol=lf
+*.cs                        text diff=csharp
+*.md                        text diff=markdown
 
-# Unity
-*.cginc              text
-*.cs                 text diff=csharp
-*.shader             text
+# Unity shader files
+*.cginc                     text
+*.compute                   text linguist-language=hlsl
+*.raytrace                  text linguist-language=hlsl
+*.shader                    text
 
-# Unity YAML
-*.mat                merge=unityyamlmerge eol=lf
-*.anim               merge=unityyamlmerge eol=lf
-*.unity              merge=unityyamlmerge eol=lf
-*.prefab             merge=unityyamlmerge eol=lf
-*.asset              merge=unityyamlmerge eol=lf
-*.meta               merge=unityyamlmerge eol=lf
-*.controller         merge=unityyamlmerge eol=lf
+# Unity JSON files
+*.asmdef                    text linguist-language=json
+*.asmref                    text linguist-language=json
+*.index                     text linguist-language=json
+*.inputactions              text linguist-language=json
+*.shadergraph               text linguist-language=json
+*.shadersubgraph            text linguist-language=json
 
-# "physic" for 3D but "physics" for 2D
-*.physicMaterial2D   merge=unityyamlmerge eol=lf
-*.physicMaterial     merge=unityyamlmerge eol=lf
-*.physicsMaterial2D  merge=unityyamlmerge eol=lf
-*.physicsMaterial    merge=unityyamlmerge eol=lf
+# Unity UI Toolkit files
+*.tss                       text linguist-language=css diff=css
+*.uss                       text linguist-language=css diff=css
+*.uxml                      text linguist-language=xml linguist-detectable
 
-# Using Git LFS
-# Add diff=lfs merge=lfs to the binary files
+# Unity YAML files
+*.anim                      unity-yaml
+*.asset                     unity-yaml
+*.brush                     unity-yaml
+*.controller                unity-yaml
+*.cubemap                   unity-yaml
+*.flare                     unity-yaml
+*.fontsettings              unity-yaml
+*.giparams                  unity-yaml
+*.guiskin                   unity-yaml
+*.lighting                  unity-yaml
+*.mask                      unity-yaml
+*.mat                       unity-yaml
+*.meta                      unity-yaml
+*.mixer                     unity-yaml
+*.overrideController        unity-yaml
+*.physicMaterial            unity-yaml
+*.physicsMaterial2D         unity-yaml
+*.playable                  unity-yaml
+*.prefab                    unity-yaml
+*.preset                    unity-yaml
+*.renderTexture             unity-yaml
+*.scenetemplate             unity-yaml
+*.shadervariants            unity-yaml
+*.signal                    unity-yaml
+*.spriteatlas               unity-yaml
+*.spriteatlasv2             unity-yaml
+*.terrainlayer              unity-yaml
+*.unity                     unity-yaml
 
-# Unity LFS
-*.cubemap            binary
-*.unitypackage       binary
+# Hide settings and plugins from GitHub stats and diffs
+Assets/Plugins/**           linguist-generated
+Packages/packages-lock.json linguist-generated
 
-# 3D models
-*.3dm                binary
-*.3ds                binary
-*.blend              binary
-*.c4d                binary
-*.collada            binary
-*.dae                binary
-*.dxf                binary
-*.FBX                binary
-*.fbx                binary
-*.jas                binary
-*.lws                binary
-*.lxo                binary
-*.ma                 binary
-*.max                binary
-*.mb                 binary
-*.obj                binary
-*.ply                binary
-*.skp                binary
-*.stl                binary
-*.ztl                binary
+# Image formats
+*.exr                       lfs
+*.hdr                       lfs
+*.jpg                       lfs
+*.png                       lfs
+*.psd                       lfs
+*.tga                       lfs
+*.xcf                       lfs
 
-# Audio
-*.aif                binary
-*.aiff               binary
-*.it                 binary
-*.mod                binary
-*.mp3                binary
-*.ogg                binary
-*.s3m                binary
-*.wav                binary
-*.xm                 binary
+# Audio formats
+*.flac                      lfs
+*.ogg                       lfs
+*.wav                       lfs
 
-# Video
-*.asf                binary
-*.avi                binary
-*.flv                binary
-*.mov                binary
-*.mp4                binary
-*.mpeg               binary
-*.mpg                binary
-*.ogv                binary
-*.wmv                binary
+# Video formats
+*.mp4                       lfs
+*.ogv                       lfs
+*.vp8                       lfs
+*.webm                      lfs
 
-# Images
-*.bmp                binary
-*.exr                binary
-*.gif                binary
-*.hdr                binary
-*.iff                binary
-*.jpeg               binary
-*.jpg                binary
-*.pict               binary
-*.png                binary
-*.psd                binary
-*.tga                binary
-*.tif                binary
-*.tiff               binary
+# 3D formats
+*.dae                       lfs
+*.dxf                       lfs
+*.fbx                       lfs
+*.obj                       lfs
 
-# Compressed Archive
-*.7z                binary
-*.bz2               binary
-*.gz                binary
-*.rar               binary
-*.tar               binary
-*.zip               binary
+# Build
+*.dll                       lfs
+*.pdb                       lfs
 
-# Compiled Dynamic Library
-*.dll               binary
-*.pdb               binary
-*.so                binary
-
-# Fonts
-*.otf               binary
-*.ttf               binary
-
-# Executable/Installer
-*.apk               binary
-*.exe               binary
-
-# Documents
-*.pdf               binary
-
-# ETC
-*.a                 binary
-*.rns               binary
-*.reason            binary
-
-# Collapse Unity-generated files on GitHub
-*.asset             linguist-generated
-*.mat               linguist-generated
-*.meta              linguist-generated
-*.prefab            linguist-generated
-*.unity             linguist-generated
-
-# Spine export file for Unity
-*.skel.bytes        binary
+# Packaging
+*.7z                        lfs
+*.gz                        lfs
+*.tar                       lfs
+*.zip                       lfs
