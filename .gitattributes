@@ -55,7 +55,7 @@
 *.unity                     unity-yaml
 
 # Hide settings and plugins from GitHub stats and diffs
-Assets/Plugins/**           linguist-generated
+Assets/TextMesh[[:space:]]Pro/** linguist-vendored
 Packages/packages-lock.json linguist-generated
 
 # Image formats
